@@ -11,7 +11,8 @@
     <title>Travel Well!</title>
 </head>
 <body align="center">
-    <div class="container mt-5">
+    <div class="container mt-5" align="center">
+        <div class="formReturnContainer">
         <h2>What city are you heading to?</h2>
         <form id="search-form" class="jumbotron col-sm-3 col-lg-6">
             <div class="form-group">
@@ -20,6 +21,8 @@
             </div>
             <button id="submitForm" class="btn btn-primary">Submit</button>
         </form>
+        <div id="weatherP"></div>
+        </div>
     </div>
 
 
@@ -55,9 +58,11 @@
         fetch(searchURL)
         .then(response => response.json())
         .then(weatherData => {
-            console.log(weatherData.main.temp)
-            // let weatherP = document.createElement('p')
-            // weatherP.innerHTML = 
+            // console.log(weatherData.main.temp)
+            let weatherP = document.createElement("p")
+            weatherP.innerHTML =  `Current tempature: ${weatherData.main.temp}`
+            // document.body.appendChild(weatherP);
+            document.querySelector('#weatherP').appendChild(weatherP)
         });
 
         searchInput.value = ''
