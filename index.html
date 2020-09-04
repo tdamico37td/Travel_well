@@ -1,125 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <title>Travel Well!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Fetch</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-
+    <form id="searchform" class="jumbotron col-sm-12 col-lg-6">
+        <h1>Time To Travel!</h1>
+        <div class="form-group">
+            <label for="search">What country are we exploring?</label>
+            <input type="search" class="form-control" id="destination" required>
+            <label for="search">City of origin:</label>
+            <input type="search" class="form-control" id="origin" required>
+            <label for="limit">Departure date:</label>
+            <input type="number" class="form-control" id="departdate" required>
+            <label for="limit">Return date:</label>
+            <input type="number" class="form-control" id="returndate" required>
+        </div>
+        <button id="submitForm" class="btn btn-primary">Let's Go!</button>
+    </form>
+        <div class = "giphyImgWrap"></div>
     <script>
+        // Action after submit button is pressed. Retrieve travel dates, origin, destination
+        document.querySelector('#searchform').onsubmit = (event) => {
+            event.preventDefault();
+            // For destination country
+            const searchDestination = document.querySelector('#destination')
+            searchCountry = searchDestination.value
+            console.log(searchCountry)
+
+            // For origin
+            const searchOrigin = document.querySelector('#origin')
+            countryOrigin = searchOrigin.value
+            console.log(countryOrigin)
+
+            const searchDDate = document.querySelector('#departdate')
+            departDate = searchDDate.value
+            console.log(departDate)
+            
+            const searchRDate = document.querySelector('#returndate')
+            returnDate = searchRDate.value
+            console.log(returnDate)  
         
-        // Roman's TEST 
-
-        //Questions:
-        // If we type in New York or a specific city, is there a general code it can pull from? W ewould then need to populate these into the API URLSearchParams
-
-        // I assume for data lookups, we would use Tray as a database by creating a CSV????
-
-        //Weather 
-
-        //WeatherStack
-
-        fetch("http://api.weatherstack.com/current?access_key=ea1988aa1ebdb2169a73c4d10bdff624&query=New York")
-        
-        .then(response => response.json())
-        .then(weatherData1 => {
-            console.log(weatherData1)
+        var newsURL = "https://newsapi.org/v2/everything?"
+        var newsapiKey = "&apiKey=56daee90c0874391b350ad10edb1bb29"
+        var searchNewsUrl = newsURL + "q=" + searchCountry + newsapiKey   
+            // console.log(searchNewsUrl)
+                // search link from original API example
+            
+        // fetch(searchNewsUrl)
+        fetch('https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2021-02-01&adults=1&nonStop=false&max=5', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer cG3NwVdfRG6OuStn7Kz1lJwAQwRz'
+            }
         })
-        
-        // WeatherBit. Only 1 day per request is allowed with this key
-
-        fetch("https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2020-09-01&end_date=2020-09-30&key=c86a2dd494f04ad886c13f09563fed50")
-        
         .then(response => response.json())
-        .then(weatherData2 => {
-            console.log(weatherData2)
-        })
-
-        // Forex
-
-        // CurrencyLater .... with AUD. How to input specific country parameter. Also can't make secure calls. 
-
-
-        http://api.currencylayer.com/live?access_key=aed3d0cc6543e6f965a7a0c3e0202769&currencies=USD,AUD
-
-        fetch("http://api.currencylayer.com/live?access_key=aed3d0cc6543e6f965a7a0c3e0202769&currencies=USD,AUD")
+        .then(dataLinks => {
+            console.log('Success', dataLinks)
+            createLinks(dataLinks)
+        });
+        // searchInput.value = ''
+        // limitInput.value = ''
+    }    
+      function createLinks(dataLinks) {
         
-        .then(response => response.json())
-        .then(currencyData1 => {
-            console.log(currencyData1)
-        })
 
-        // Exchange rate API. Would need to query the specific paramater we are looking for.
+        dataLinks.data.forEach(urls => {
+              console.log(urls.data)
+            //   let urlVar = urls.url 
+            //   let urlLink = document.createElement('div')
+            //   urlInk.setAttribute('src', urlVar)
 
-        fetch("https://v6.exchangerate-api.com/v6/612b3f0051e74918bf7b9d88/latest/USD")
-        
-        .then(response => response.json())
-        .then(currencyData2 => {
-            console.log(currencyData2)
-        })
+          });
+          
+      }
 
 
-        </script>
-    
+    </script>
 </body>
 </html>
-
-
-
-<!-- // Populating parameters within an API??? Biggest question is also field mallping. When I type in USD / AUD, I need to make sure the pull this field
-
-        //Weatherstack: We can only show current weathe?
-        // http://api.weatherstack.com/current?access_key=ea1988aa1ebdb2169a73c4d10bdff624&query=New York"
-
-        // // How do we get it so that it matches the current city when we input into form?
-        // We can also use airport ICAO code. https://www.weatherbit.io/api
-
-        // fetch("http://api.weatherstack.com/current?access_key=ea1988aa1ebdb2169a73c4d10bdff624&query=New York")
-        
-        // .then(response => response.json())
-
-        // //Weatherbit
-        // // Error message. Looks like we can only make 1 API call per day?
-
-        // https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2020-09-01&end_date=2020-09-30&key=c86a2dd494f04ad886c13f09563fed50
-
-        // // Forex
-
-        // // 
-
-        //     // CurrencyLayer - does not support HTTPS encrytption. Would have to update parameters too
-
-        //     http://api.currencylayer.com/live?access_key=aed3d0cc6543e6f965a7a0c3e0202769&currencies=USD,AUD
-
-        //     // Exchange rate API - would just have to call the API and pull the specific currency
-
-                https://v6.exchangerate-api.com/v6/612b3f0051e74918bf7b9d88/latest/EUR
-// 
-
-//     Landing page:
-    
-//         Create Form 1 Similar To Sky Scanner
-//         Includes Submit Button
-//         Calendar popup for both dates
-//         Includes flight image or cool travel image
-
-//     Return page:
-
-//         Average flight / hotel costs (API call to SkyScanner)
-        
-//         Current news in country (API call to appropriate news API)
-
-//         Average weather during this time of year (weather API call)
-        
-//         Current exchange rate (API call to FX rate)
-        
-//         Bonus: Interesting fact about country, current sayings, etc. TBD
-
-
-
