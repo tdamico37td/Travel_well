@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Fetch</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <form id="searchform" class="jumbotron col-sm-12 col-lg-6">
+        <h1>Time To Travel!</h1>
+        <div class="form-group">
+            <label for="search">What country are we exploring?</label>
+            <input type="search" class="form-control" id="destination" required>
+            <label for="search">City of origin:</label>
+            <input type="search" class="form-control" id="origin" required>
+            <label for="limit">Departure date:</label>
+            <input type="number" class="form-control" id="departdate" required>
+            <label for="limit">Return date:</label>
+            <input type="number" class="form-control" id="returndate" required>
+        </div>
+        <button id="submitForm" class="btn btn-primary">Let's Go!</button>
+    </form>
+        <div class = "giphyImgWrap"></div>
+    <script>
+        // Action after submit button is pressed. Retrieve travel dates, origin, destination
+        document.querySelector('#searchform').onsubmit = (event) => {
+            event.preventDefault();
+            // For destination country
+            const searchDestination = document.querySelector('#destination')
+            searchCountry = searchDestination.value
+            console.log(searchCountry)
+
+            // For origin
+            const searchOrigin = document.querySelector('#origin')
+            countryOrigin = searchOrigin.value
+            console.log(countryOrigin)
+
+            const searchDDate = document.querySelector('#departdate')
+            departDate = searchDDate.value
+            console.log(departDate)
+            
+            const searchRDate = document.querySelector('#returndate')
+            returnDate = searchRDate.value
+            console.log(returnDate)  
+        
+        var newsURL = "https://newsapi.org/v2/everything?"
+        var newsapiKey = "&apiKey=56daee90c0874391b350ad10edb1bb29"
+        var searchNewsUrl = newsURL + "q=" + searchCountry + newsapiKey   
+            // console.log(searchNewsUrl)
+                // search link from original API example
+            // fetch('https://api.giphy.com/v1/gifs/search?api_key=gVK1MNTvzBXqzVZw6CD09TYoMENcaNFW&q=spongebob&limit=3')
+        fetch(searchNewsUrl)
+        .then(response => response.json())
+        .then(dataLinks => {
+            console.log(dataLinks)
+            createLinks(dataLinks)
+        });
+        // searchInput.value = ''
+        // limitInput.value = ''
+    }    
+      function createLinks(dataLinks) {
+        
+
+        dataLinks.data.forEach(urls => {
+              console.log(urls.url)
+            //   let urlVar = urls.url 
+            //   let urlLink = document.createElement('div')
+            //   urlInk.setAttribute('src', urlVar)
+
+          });
+          
+      }
+
+
+    </script>
+</body>
+</html>
