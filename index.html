@@ -31,28 +31,38 @@
         const searchInput = document.querySelector('#search')
         searchCity = searchInput.value
         
-        
+        /* ////////////////////////////////
+        //////////////////////////////////
+        OPEN WEATHER API QUERY DATA
+        */ 
+
         const baseURL = "https://api.openweathermap.org/data/2.5/weather?"
         const apiKey = "&appid=7fdda9fb5628978e014d444426318f42"
         const searchQuery = `q=${searchCity}`
-        const searchURL = baseURL + searchQuery + apiKey 
+        const units = "&units=imperial"
+        const searchURL = baseURL + searchQuery + apiKey + units
 
+
+        /* ////////////////////////////////
+        //////////////////////////////////
+        EXAMPLE URL => 
+                */ 
+    
         
         // console.log(searchURL);
 
+
         fetch(searchURL)
         .then(response => response.json())
-        .then(weatherData1 => {
-            console.log(weatherData1)
+        .then(weatherData => {
+            console.log(weatherData.main.temp)
+            // let weatherP = document.createElement('p')
+            // weatherP.innerHTML = 
         });
 
         searchInput.value = ''
 
         }
-
-        // 
-        
-        // for each to call back certain keuy value. see screenshot
         
     </script>
     
