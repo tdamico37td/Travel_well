@@ -98,7 +98,8 @@
       function createLinks(dataLinks) {
         console.log(dataLinks.response.results[3].webUrl)
         let dataL = document.createElement("div")
-            dataL.innerHTML =  `${dataLinks.response.results.webUrl}`
+            dataL.innerHTML =  `Here is some news on ${searchCity}: ${dataLinks.response.results[3].webUrl}`
+            document.querySelector('#dataL').appendChild(dataL)
         }
     </script>
     
