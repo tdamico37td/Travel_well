@@ -52,13 +52,13 @@
                 */ 
     
         
-        // console.log(searchURL);
+        console.log(searchURL);
 
 
         fetch(searchURL)
         .then(response => response.json())
         .then(weatherData => {
-            // console.log(weatherData.main.temp)
+            console.log(weatherData.main.temp)
             let weatherP = document.createElement("p")
             weatherP.innerHTML =  `Current tempature: ${weatherData.main.temp}`
             // document.body.appendChild(weatherP);
@@ -67,8 +67,36 @@
 
         searchInput.value = ''
 
-        }
+        var newsURL = "https://content.guardianapis.com/search?"
+        var newsapiKey = "api-key=c03c8f41-19d3-4057-b9a1-d0d6651a75f4"
+        var searchNewsUrl = newsURL + newsapiKey + "&q=" + searchCity + "&articles=0"  
+            // console.log(searchNewsUrl)
+                // search link from original API example
+            // fetch("https://content.guardianapis.com/search?api-key=c03c8f41-19d3-4057-b9a1-d0d6651a75f4&total=0&q=norway")
+        fetch(searchNewsUrl)
+            // method: 'GET',
+            // headers: {
+            //     'x-rapidapi-host': 'newscatcher.p.rapidapi.com',
+            //     'x-rapidapi-key': '826983db6cmshea0082ebab25b6bp15e676jsn035c8633add5'
+            // },
+            // body: JSON.stringify(dataLinks),
+    
+            
+        .then(response => response.json())
+        .then(dataLinks => {
+            // console.log(dataLinks)
+            // console.log(dataLinks.response.results[2].webUrl)
+            createLinks(dataLinks)
+            // let dataL = document.createElement("div")
+            // dataL.innerHTML = `Click here for news: ${dataLinks.response.results[2].webUrl}` 
+        });
+        // searchCountry.value = ''
+        // limitInput.value = ''
+    }    
+      function createLinks(dataLinks) {
+        console.log(dataLinks.response.results[3].webUrl)
         
+        }
     </script>
     
 </body>
