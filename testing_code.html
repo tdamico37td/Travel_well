@@ -22,6 +22,8 @@
             <button id="submitForm" class="btn btn-primary">Submit</button>
         </form>
         <div id="weatherP"></div>
+
+        <div id="dataL"></div>
         </div>
     </div>
 
@@ -95,7 +97,8 @@
     }    
       function createLinks(dataLinks) {
         console.log(dataLinks.response.results[3].webUrl)
-        
+        let dataL = document.createElement("div")
+            dataL.innerHTML =  `${dataLinks.response.results.webUrl}`
         }
     </script>
     
