@@ -10,64 +10,117 @@
 
     <title>Travel Well!</title>
 </head>
-<body>
+
+
+<style>
+
+body {
+  background: url(https://images.unsplash.com/photo-1457030642598-b037296c9296?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80) fixed no-repeat; 
+  background-size: 100vw;
+  font-family: Georgia;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .center{
+    width: 100%;
+  }
+}
+
+</style>
+
+    <body align="center">
+    <div class="container mt-5" align="center">
+        <div class="formReturnContainer">
+        <h2>What city are you heading to?</h2>
+        <form id="search-form" class="jumbotron col-sm-3 col-lg-6">
+            <div class="form-group">
+                <label for="search"></label>
+                <input type="search" class="form-control" id="search" required>
+            </div>
+            <button id="submitForm" class="btn btn-primary">Submit</button>
+        </form>
+        <div id="weatherP"></div>
+
+        <div id="dataL"></div>
+        </div>
+    </div>
+
 
     <script>
+
+        document.querySelector('#search-form').onsubmit = (event) => {
+        event.preventDefault();
+
+        const searchInput = document.querySelector('#search')
+        searchCity = searchInput.value
         
+        /* ////////////////////////////////
+        //////////////////////////////////
+        OPEN WEATHER API QUERY DATA
+        */ 
 
-        // Troy's and Roman's test
+        const baseURL = "https://api.openweathermap.org/data/2.5/weather?"
+        const apiKey = "&appid=7fdda9fb5628978e014d444426318f42"
+        const searchQuery = `q=${searchCity}`
+        const units = "&units=imperial"
+        const searchURL = baseURL + searchQuery + apiKey + units
 
 
-        //Questions:
-        // If we type in New York or a specific city, is there a general code it can pull from? W ewould then need to populate these into the API URLSearchParams
-
-        // I assume for data lookups, we would use Tray as a database by creating a CSV????
-
-        //Weather 
-
-        //WeatherStack
-
-        fetch("http://api.weatherstack.com/current?access_key=ea1988aa1ebdb2169a73c4d10bdff624&query=New York")
+        /* ////////////////////////////////
+        //////////////////////////////////
+        EXAMPLE URL => 
+                */ 
+    
         
+        console.log(searchURL);
+
+
+        fetch(searchURL)
         .then(response => response.json())
-        .then(weatherData1 => {
-            console.log(weatherData1)
-        })
-        
-        // WeatherBit. Only 1 day per request is allowed with this key
+        .then(weatherData => {
+            console.log(weatherData.main.temp)
+            let weatherP = document.createElement("p")
+            weatherP.innerHTML =  `Current tempature: ${weatherData.main.temp}`
+            // document.body.appendChild(weatherP);
+            document.querySelector('#weatherP').appendChild(weatherP)
+        });
 
-        fetch("https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2020-09-01&end_date=2020-09-30&key=c86a2dd494f04ad886c13f09563fed50")
-        
+        searchInput.value = ''
+
+        var newsURL = "https://content.guardianapis.com/search?"
+        var newsapiKey = "api-key=c03c8f41-19d3-4057-b9a1-d0d6651a75f4"
+        var searchNewsUrl = newsURL + newsapiKey + "&q=" + searchCity + "&articles=0"  
+            // console.log(searchNewsUrl)
+                // search link from original API example
+            // fetch("https://content.guardianapis.com/search?api-key=c03c8f41-19d3-4057-b9a1-d0d6651a75f4&total=0&q=norway")
+        fetch(searchNewsUrl)
+            // method: 'GET',
+            // headers: {
+            //     'x-rapidapi-host': 'newscatcher.p.rapidapi.com',
+            //     'x-rapidapi-key': '826983db6cmshea0082ebab25b6bp15e676jsn035c8633add5'
+            // },
+            // body: JSON.stringify(dataLinks),
+    
+            
         .then(response => response.json())
-        .then(weatherData2 => {
-            console.log(weatherData2)
-        })
-
-        // Forex
-
-        // CurrencyLater .... with AUD. How to input specific country parameter. Also can't make secure calls. 
-
-
-        http://api.currencylayer.com/live?access_key=aed3d0cc6543e6f965a7a0c3e0202769&currencies=USD,AUD
-
-        fetch("http://api.currencylayer.com/live?access_key=aed3d0cc6543e6f965a7a0c3e0202769&currencies=USD,AUD")
-        
-        .then(response => response.json())
-        .then(currencyData1 => {
-            console.log(currencyData1)
-        })
-
-        // Exchange rate API. Would need to query the specific paramater we are looking for.
-
-        fetch("https://v6.exchangerate-api.com/v6/612b3f0051e74918bf7b9d88/latest/USD")
-        
-        .then(response => response.json())
-        .then(currencyData2 => {
-            console.log(currencyData2)
-        })
-
-
-        </script>
+        .then(dataLinks => {
+            // console.log(dataLinks)
+            // console.log(dataLinks.response.results[2].webUrl)
+            createLinks(dataLinks)
+            // let dataL = document.createElement("div")
+            // dataL.innerHTML = `Click here for news: ${dataLinks.response.results[2].webUrl}` 
+        });
+        // searchCountry.value = ''
+        // limitInput.value = ''
+    }    
+      function createLinks(dataLinks) {
+        console.log(dataLinks.response.results[3].webUrl)
+        let dataL = document.createElement("div")
+            dataL.innerHTML =  `Here is some news on ${searchCity}: ${dataLinks.response.results[3].webUrl}`
+            document.querySelector('#dataL').appendChild(dataL)
+        }
+    </script>
     
 </body>
 </html>
@@ -125,3 +178,34 @@
 
 
 
+// Forex
+
+        // // CurrencyLater .... with AUD. How to input specific country parameter. Also can't make secure calls. 
+
+
+        // http://api.currencylayer.com/live?access_key=aed3d0cc6543e6f965a7a0c3e0202769&currencies=USD,AUD
+
+        // fetch("http://api.currencylayer.com/live?access_key=aed3d0cc6543e6f965a7a0c3e0202769&currencies=USD,AUD")
+        
+        // .then(response => response.json())
+        // .then(currencyData1 => {
+        //     console.log(currencyData1)
+        // })
+
+        // // Exchange rate API. Would need to query the specific paramater we are looking for.
+
+        // fetch("https://v6.exchangerate-api.com/v6/612b3f0051e74918bf7b9d88/latest/USD")
+        
+        // .then(response => response.json())
+        // .then(currencyData2 => {
+        //     console.log(currencyData2)
+        // })
+
+             // // WeatherBit. Only 1 day per request is allowed with this key
+
+        // fetch("https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2020-09-01&end_date=2020-09-30&key=c86a2dd494f04ad886c13f09563fed50")
+        
+        // .then(response => response.json())
+        // .then(weatherData2 => {
+        //     console.log(weatherData2)
+        // })
