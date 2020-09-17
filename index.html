@@ -84,6 +84,7 @@
         .then(response => response.json())
         .then(weatherData => {
             // console.log(weatherData.main.temp)
+            document.querySelector('#weatherP').innerHTML=""
             let weatherP = document.createElement("p")
             weatherP.innerHTML =  `Current tempature: ${weatherData.main.temp}`
             // document.body.appendChild(weatherP);
