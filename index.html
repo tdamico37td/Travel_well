@@ -71,7 +71,7 @@
                 */ 
     
         
-        console.log(searchURL);
+        // console.log(searchURL);
 
 
         fetch(searchURL)
@@ -89,7 +89,7 @@
         var newsURL = "https://content.guardianapis.com/search?"
         var newsapiKey = "api-key=c03c8f41-19d3-4057-b9a1-d0d6651a75f4"
         var searchNewsUrl = newsURL + newsapiKey + "&q=" + searchCity + "&page-size=3"  
-            console.log(searchNewsUrl)
+            // console.log(searchNewsUrl)
                 // search link from original API example
             // fetch("https://content.guardianapis.com/search?api-key=c03c8f41-19d3-4057-b9a1-d0d6651a75f4&total=0&q=norway")
         fetch(searchNewsUrl)
@@ -107,7 +107,9 @@
         });
     }    
       function createLinks(dataLinks) {
-          
+        
+        document.querySelector('#dataL').innerHTML="";
+
         dataLinks.response.results.forEach( o => {
             let div = document.createElement('div')
             div.classList.add('url_wrapper')
