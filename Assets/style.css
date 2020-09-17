@@ -1,0 +1,174 @@
+
+
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: Georgia, “Times New Roman”, Times, serif;
+    font-size: 18px;
+    line-height: 125%;
+    background: #F5F5F5
+  }  
+  
+  /*Header*/
+header {
+    background-color: rgb(157, 228, 99);
+    border-bottom: 1px solid rgb(173, 170, 170);
+    animation-name: colorbox;
+    animation-duration: 4s;
+}
+
+@keyframes colorbox {
+    from {background-color: rgb(240, 236, 47);}
+    to {background-color: rgb(157, 228, 99);}
+}
+
+header a {
+    text-decoration: none;
+}
+
+h1 {
+    margin: 25px;
+    color: rgb(196, 16, 16);
+    font-size: 30px;
+    font-weight: bold;
+    width: 35%;
+}
+
+
+
+/* Universal Styles */
+.container {
+    margin: 0 auto;
+    background-color: #ffffff;
+    color: blanchedalmond;
+    opacity: 1;
+    font-size: 25px;
+}
+.blue-background {
+    border: none;
+    background-color: #4aaaa5;
+    min-height: 280px;
+}
+
+.content-wrapper {
+    margin: 10px;
+}
+.clearfix::after{
+    content:"";
+    clear: both;
+    display: table;
+}
+
+.round {
+    border-radius: 100%;
+}
+
+.rounded {
+    border-radius: 2%;
+}
+
+section .container {
+    padding-top: 2%;
+}
+
+
+
+
+/* Wrapper for content*/
+.content {
+    width: 660px;
+    background-color: #ffffff;
+    margin-bottom: 50px;
+    float: left;
+}
+
+h2 { 
+    font-size: 40px;
+    color: #4aaaa5;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 3px solid rgb(173, 170, 170);
+}
+
+h3 {
+    font-size: 24px;
+    color:#4aaaa5;
+    text-align: center;
+    border-bottom: 2px solid lightgray;
+    margin-bottom: 20px;
+    padding-bottom: 20px
+  }
+
+#myinfo {
+    color: #333;
+    /* padding: 25px;
+    margin: 20px; */
+    display: inline-block;
+    width: 65%;
+}
+
+p {
+    padding: 0%;
+    margin: 0%;
+    font-family: Georgia, “Times New Roman”, Times, serif;
+    font-size: 20px;
+    background: rgb(167, 168, 236);
+    color: rgb(129, 22, 67);
+  }
+
+/*Soc Media */
+.mysocmedia {
+    /* padding: 5px; */
+    color: teal;
+    font-size: 20px;
+    font-weight: bold;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DDDDDD;
+    margin-bottom: 5px;
+    border: 2px solid #DDDDDD;
+    width: 220px;
+    float: right;
+    text-align: center;
+}
+#weatherP {
+    margin: 0 auto;
+background-color: #c79886;
+color: blanchedalmond;
+font-size: 25px;
+}
+.center {
+    margin: 3% auto;
+    width: 35%;
+}
+
+.padding {
+    padding: 10px;
+    margin-top: 20px;
+}
+/* Footer */
+footer {
+    background-color: #666666;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    border-top: 5px solid rgb(34, 142, 150);
+    text-align: center;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+}
+
+
+/*Main Background*/
+/* put in background-size: contain */
+/* background-size: 100vw */
+body {
+    background-image: url("World_Passports.jpg");
+}
+
+@media only screen and (max-width: 700px) {
+    .center {
+        width: 100%;
+    }
+  }

@@ -3,18 +3,18 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <title>Travel Well!</title>
+<title>Travel Well!</title>
+<!-- Remove browser styling -->
+<link rel="stylesheet" type="text/css" href="Assets/reset.css">
+<!-- Custom Styling -->
+<link rel="stylesheet" type="text/css" href="Assets/style.css">
 </head>
+
 <style>
-    body{
-        background: url('https://images.unsplash.com/photo-1457030642598-b037296c9296?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80') fixed no-repeat;
-        background-size: 100vw;">
-    }
     #weatherP {
         margin: 0 auto;
     background-color: #c79886;
@@ -37,7 +37,7 @@
                 <label for="search"></label>
                 <input type="search" class="form-control" id="search" required>
             </div>
-            <button id="submitForm" class="btn btn-primary">Submit</button>
+            <button id="submitForm" class="btn btn-primary">Search</button>
         </form>
             
         <div id="weatherP"></div>
@@ -112,105 +112,21 @@
         });
     }    
       function createLinks(dataLinks) {
-        
-        // console.log(dataLinks.response.results[2].webUrl)
-        // let dataL = document.createElement("div")
-        //     dataL.innerHTML =  `${dataLinks.response.results[2].webUrl}`
-        //     document.querySelector('#dataL').appendChild(dataL)
+          
         dataLinks.response.results.forEach( o => {
             let a = document.createElement('a')
             a.textContent = o.webTitle
             a.href = o.webUrl
-            document.querySelector('body').appendChild(a)
+            document.querySelector('#dataL').appendChild(a)
         })
             
         }
     </script>
-    
+<!--Footer info-->
+<footer>&copy; Copyright 2020 Travel Well</footer>
+
 </body>
 </html>
 
 
 
-<!-- // Populating parameters within an API??? Biggest question is also field mallping. When I type in USD / AUD, I need to make sure the pull this field
-
-        //Weatherstack: We can only show current weathe?
-        // http://api.weatherstack.com/current?access_key=ea1988aa1ebdb2169a73c4d10bdff624&query=New York"
-
-        // // How do we get it so that it matches the current city when we input into form?
-        // We can also use airport ICAO code. https://www.weatherbit.io/api
-
-        // fetch("http://api.weatherstack.com/current?access_key=ea1988aa1ebdb2169a73c4d10bdff624&query=New York")
-        
-        // .then(response => response.json())
-
-        // //Weatherbit
-        // // Error message. Looks like we can only make 1 API call per day?
-
-        // https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2020-09-01&end_date=2020-09-30&key=c86a2dd494f04ad886c13f09563fed50
-
-        // // Forex
-
-        // // 
-
-        //     // CurrencyLayer - does not support HTTPS encrytption. Would have to update parameters too
-
-        //     http://api.currencylayer.com/live?access_key=aed3d0cc6543e6f965a7a0c3e0202769&currencies=USD,AUD
-
-        //     // Exchange rate API - would just have to call the API and pull the specific currency
-
-                https://v6.exchangerate-api.com/v6/612b3f0051e74918bf7b9d88/latest/EUR
-// 
-
-//     Landing page:
-    
-//         Create Form 1 Similar To Sky Scanner
-//         Includes Submit Button
-//         Calendar popup for both dates
-//         Includes flight image or cool travel image
-
-//     Return page:
-
-//         Average flight / hotel costs (API call to SkyScanner)
-        
-//         Current news in country (API call to appropriate news API)
-
-//         Average weather during this time of year (weather API call)
-        
-//         Current exchange rate (API call to FX rate)
-        
-//         Bonus: Interesting fact about country, current sayings, etc. TBD
-
-
-
-// Forex
-
-        // // CurrencyLater .... with AUD. How to input specific country parameter. Also can't make secure calls. 
-
-
-        // http://api.currencylayer.com/live?access_key=aed3d0cc6543e6f965a7a0c3e0202769&currencies=USD,AUD
-
-        // fetch("http://api.currencylayer.com/live?access_key=aed3d0cc6543e6f965a7a0c3e0202769&currencies=USD,AUD")
-        
-        // .then(response => response.json())
-        // .then(currencyData1 => {
-        //     console.log(currencyData1)
-        // })
-
-        // // Exchange rate API. Would need to query the specific paramater we are looking for.
-
-        // fetch("https://v6.exchangerate-api.com/v6/612b3f0051e74918bf7b9d88/latest/USD")
-        
-        // .then(response => response.json())
-        // .then(currencyData2 => {
-        //     console.log(currencyData2)
-        // })
-
-             // // WeatherBit. Only 1 day per request is allowed with this key
-
-        // fetch("https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2020-09-01&end_date=2020-09-30&key=c86a2dd494f04ad886c13f09563fed50")
-        
-        // .then(response => response.json())
-        // .then(weatherData2 => {
-        //     console.log(weatherData2)
-        // })
