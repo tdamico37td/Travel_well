@@ -15,19 +15,14 @@
 </head>
 
 <style>
-    #weatherP {
-        margin: 0 auto;
-    background-color: #c79886;
-    color: blanchedalmond;
-    font-size: 25px;
-    }
     #dataL {
         margin: 0 auto;
     background-color: #4aaaa5;
     color: blanchedalmond;
     font-size: 25px;
     }
-        </style>
+</style>
+
 <body align="center">
     <div class="container mt-5" align="center">
         <div class="formReturnContainer">
@@ -93,7 +88,7 @@
 
         var newsURL = "https://content.guardianapis.com/search?"
         var newsapiKey = "api-key=c03c8f41-19d3-4057-b9a1-d0d6651a75f4"
-        var searchNewsUrl = newsURL + newsapiKey + "&q=" + searchCity + "&articles=0"  
+        var searchNewsUrl = newsURL + newsapiKey + "&q=" + searchCity + "&page-size=3"  
             console.log(searchNewsUrl)
                 // search link from original API example
             // fetch("https://content.guardianapis.com/search?api-key=c03c8f41-19d3-4057-b9a1-d0d6651a75f4&total=0&q=norway")
@@ -114,10 +109,14 @@
       function createLinks(dataLinks) {
           
         dataLinks.response.results.forEach( o => {
+            let div = document.createElement('div')
+            div.classList.add('url_wrapper')
             let a = document.createElement('a')
             a.textContent = o.webTitle
             a.href = o.webUrl
-            document.querySelector('#dataL').appendChild(a)
+            a.setAttribute("target","_blank")
+            div.appendChild(a)
+            document.querySelector('#dataL').appendChild(div)
         })
             
         }

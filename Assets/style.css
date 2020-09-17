@@ -71,7 +71,9 @@ section .container {
     padding-top: 2%;
 }
 
-
+.url_wrapper:first-child {
+    background-color: yellow;
+  }
 
 
 /* Wrapper for content*/
@@ -82,30 +84,6 @@ section .container {
     float: left;
 }
 
-h2 { 
-    font-size: 40px;
-    color: #4aaaa5;
-    margin-bottom: 30px;
-    padding-bottom: 25px;
-    border-bottom: 3px solid rgb(173, 170, 170);
-}
-
-h3 {
-    font-size: 24px;
-    color:#4aaaa5;
-    text-align: center;
-    border-bottom: 2px solid lightgray;
-    margin-bottom: 20px;
-    padding-bottom: 20px
-  }
-
-#myinfo {
-    color: #333;
-    /* padding: 25px;
-    margin: 20px; */
-    display: inline-block;
-    width: 65%;
-}
 
 p {
     padding: 0%;
@@ -136,15 +114,7 @@ background-color: #c79886;
 color: blanchedalmond;
 font-size: 25px;
 }
-.center {
-    margin: 3% auto;
-    width: 35%;
-}
-
-.padding {
-    padding: 10px;
-    margin-top: 20px;
-}
+.
 /* Footer */
 footer {
     background-color: #666666;
