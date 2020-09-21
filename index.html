@@ -26,8 +26,9 @@
 <body align="center">
     <div class="container mt-5" align="center">
         <div class="formReturnContainer">
-        <h2>What city are you heading to?</h2>
-        <form id="search-form" class="jumbotron col-sm-3 col-lg-6">
+        <!-- <h2>What city are you heading to?</h2> -->
+        <form id="search-form" class="jumbotron col-sm-1 col-lg-5">
+            <h2>What city are you heading to?</h2>
             <div class="form-group">
                 <label for="search"></label>
                 <input type="search" class="form-control" id="search" required>
@@ -56,12 +57,16 @@
 
         document.querySelector('#search-form').onsubmit = (event) => {
         event.preventDefault();
+        
         const searchInput = document.querySelector('#search')
         searchCity = searchInput.value
         
-        /* ////////////////////////////////
-        //////////////////////////////////
-        OPEN WEATHER API QUERY DATA
+        // loader
+
+        createLoaderHTML()
+
+
+        /* OPEN WEATHER API QUERY DATA
         */ 
 
         const baseURL = "https://api.openweathermap.org/data/2.5/weather?"
@@ -70,16 +75,9 @@
         const units = "&units=imperial"
         const searchURL = baseURL + searchQuery + apiKey + units
 
+        // API call for weather
 
-        /* ////////////////////////////////
-        //////////////////////////////////
-        EXAMPLE URL => 
-                */ 
-    
         
-        // console.log(searchURL);
-
-
         fetch(searchURL)
         .then(response => response.json())
         .then(weatherData => {
@@ -129,6 +127,29 @@
         })
             
         }
+
+     
+
+        // loader code
+
+        function createLoaderHTML(){
+            const loadingDiv = document.createElement('div');
+
+            loadingDiv.classList.add('loader');
+
+            const loaderImg = document.createElement('IMG');
+            loaderImg.setAttribute('src', 'https://hubbravissimo.com/wp-content/uploads/2019/07/fff16-862c4e_80c174747b704e778f110260a995cc97mv2.gif');
+            
+            loadingDiv.appendChild(loaderImg)
+
+            document.body.appendChild(loadingDiv)
+        }
+
+        function hideLoader(){
+            const loadingDiv = document.querySelector('.loader');
+            document.body.removeChild(loadingDiv)
+        }  
+
 
     </script>
 <!--Footer info-->

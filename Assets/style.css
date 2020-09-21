@@ -6,7 +6,7 @@ body {
     font-family: Georgia, “Times New Roman”, Times, serif;
     font-size: 18px;
     line-height: 125%;
-    background: #F5F5F5
+    background-color: transparent;
   }  
   
   /*Header*/
@@ -26,21 +26,17 @@ header a {
     text-decoration: none;
 }
 
-h1 {
-    margin: 25px;
-    color: rgb(196, 16, 16);
-    font-size: 30px;
-    font-weight: bold;
-    width: 35%;
+
+h2{
+    color: red;
+    font-size: 25px;
 }
-
-
 
 /* Universal Styles */
 .container {
     margin: 0 auto;
     background-color: #ffffff;
-    color: blanchedalmond;
+    /* color: blanchedalmond; */
     opacity: 1;
     font-size: 25px;
 }
@@ -94,20 +90,6 @@ p {
     color: rgb(129, 22, 67);
   }
 
-/*Soc Media */
-.mysocmedia {
-    /* padding: 5px; */
-    color: teal;
-    font-size: 20px;
-    font-weight: bold;
-    background: #FFFFFF;
-    border-bottom: 1px solid #DDDDDD;
-    margin-bottom: 5px;
-    border: 2px solid #DDDDDD;
-    width: 220px;
-    float: right;
-    text-align: center;
-}
 #weatherP {
     margin: 0 auto;
 background-color: #c79886;
@@ -129,6 +111,13 @@ footer {
 
 }
 
+.container{
+    background: transparent;
+}
+
+.jumbotron{
+    background: transparent;
+}
 
 /*Main Background*/
 /* put in background-size: contain */
@@ -142,3 +131,19 @@ body {
         width: 100%;
     }
   }
+
+
+  .loader {
+    position: absolute;
+    top:0;
+    z-index: 999;
+    background: rgba(255, 255, 255, .90);
+    width: 100vw;
+    text-align: center;
+    height: 100vh;
+}
+.loader img {
+    width: 300px;
+    margin-top: 15%;
+}
+
