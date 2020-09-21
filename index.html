@@ -51,6 +51,9 @@
 
     <script>
 
+
+        // api call to city background?
+
         const d = new Date();
         const n = d.getFullYear();
         document.querySelector("#current_year").textContent = n 
@@ -125,10 +128,12 @@
             div.appendChild(a)
             document.querySelector('#dataL').appendChild(div)
         })
-            
+           //hide loader 
+        
+        hideLoader()
         }
 
-     
+        
 
         // loader code
 

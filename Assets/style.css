@@ -30,6 +30,8 @@ header a {
 h2{
     color: red;
     font-size: 25px;
+    background: lightblue;
+    opacity: 0.75;
 }
 
 /* Universal Styles */
@@ -67,10 +69,17 @@ section .container {
     padding-top: 2%;
 }
 
-.url_wrapper:first-child {
+/* .url_wrapper:first-child {
     background-color: yellow;
-  }
+  } */
 
+.url_wrapper {
+    background-color: yellow;
+    background: lightblue;
+    opacity: 0.75;
+    font-family: Georgia, “Times New Roman”, Times, serif;
+    font-size: 20px;
+  }
 
 /* Wrapper for content*/
 .content {
@@ -86,16 +95,17 @@ p {
     margin: 0%;
     font-family: Georgia, “Times New Roman”, Times, serif;
     font-size: 20px;
-    background: rgb(167, 168, 236);
+    background: lightblue;
+    opacity: 0.75;
     color: rgb(129, 22, 67);
   }
 
 #weatherP {
     margin: 0 auto;
-background-color: #c79886;
-color: blanchedalmond;
-font-size: 25px;
-}
+    /* background-color: #c79886; */
+    color: whitesmoke;
+    font-size: 25px;
+    }
 .
 /* Footer */
 footer {
